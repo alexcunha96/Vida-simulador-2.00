@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>BitLife Portugal — God Mode Edition</title>
+    <title>BitLife Portugal — True Clone</title>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="manifest" href="manifest.json">
@@ -62,11 +62,11 @@
         .nav-tabs {
             position: fixed; bottom: 0; left: 0; right: 0; background: #1c1c1e;
             display: flex; justify-content: space-around; padding: 6px 0 env(safe-area-inset-bottom) 0;
-            border-top: 1px solid #2c2c2e; z-index: 999; overflow-x: auto;
+            border-top: 1px solid #2c2c2e; z-index: 999;
         }
         .nav-btn {
             background: none; border: none; font-size: 10px; color: #888;
-            display: flex; flex-direction: column; align-items: center; min-width: 60px; padding: 4px;
+            display: flex; flex-direction: column; align-items: center; min-width: 55px; padding: 4px;
         }
         .nav-btn.active { color: #ffcc00; font-weight: bold; }
         .nav-icon { font-size: 18px; margin-bottom: 2px; }
@@ -79,13 +79,13 @@
     </style>
 </head>
 <body>
-    <!-- MODAL CRIAÇÃO -->
+    <!-- CRIAR PERSONAGEM -->
     <div id="modal-criacao" class="modal">
         <div class="modal-content">
             <h2>Criar Personagem</h2>
             <label>Nome:</label><input type="text" id="setup-nome" class="input-game" value="Tiago">
             <label>Apelido:</label><input type="text" id="setup-apelido" class="input-game" value="Silva">
-            <label>Distrito de Nascimento:</label>
+            <label>Onde nascer?</label>
             <select id="setup-cidade" class="input-game">
                 <option value="Chamusca">Chamusca (Santarém)</option>
                 <option value="Lisboa">Lisboa (Capital)</option>
@@ -95,54 +95,54 @@
         </div>
     </div>
 
-    <!-- MODAL POPUP -->
+    <!-- JANELAS POPUP DE ESCOLHAS -->
     <div id="modal-decisao" class="modal" style="display:none;"><div class="modal-content" id="decisao-corpo"></div></div>
 
     <main>
         <header>
             <p class="nome-personagem" id="player-nome">Tiago Silva</p>
-            <p class="detalhes-personagem">📍 <span id="player-local">Chamusca</span> | 💶 Banco: <span id="player-saldo">0€</span> | 💼 Trabalho: <span id="player-emprego">Desempregado</span></p>
+            <p class="detalhes-personagem">📍 <span id="player-local">Chamusca</span> | 💶 Banco: <span id="player-saldo">0€</span> | 💼 <span id="player-emprego">Desempregado</span></p>
         </header>
 
         <!-- ABA 1: DIÁRIO -->
         <div id="aba-dia" class="aba-conteudo ativa"><div class="diario-feed" id="feed-vida"></div></div>
 
-        <!-- ABA 2: EMPREGO & CARREIRA -->
+        <!-- ABA 2: MERCADO DE TRABALHO -->
         <div id="aba-trabalho" class="aba-conteudo">
-            <h2>💼 Centro de Emprego</h2>
+            <h2>💼 Mercado de Trabalho</h2>
             <div id="lista-vagas"></div>
         </div>
 
         <!-- ABA 3: RELACIONAMENTOS -->
         <div id="aba-amor" class="aba-conteudo">
-            <h2>❤️ Família & Relações</h2>
+            <h2>❤️ Relações & Família</h2>
             <button class="btn-game" style="width:100%; margin-bottom:12px;" onclick="procurarParceira()">Procurar Namorada</button>
             <div id="lista-relacoes"></div>
         </div>
 
-        <!-- ABA 4: BENS & NEGÓCIOS -->
+        <!-- ABA 4: BENS E EMPRESAS -->
         <div id="aba-bens" class="aba-conteudo">
             <h2>🏪 Negócios e Propriedades</h2>
-            <button class="btn-game" onclick="fundarEmpresa('Stand', 12000, 1000)">Fundar Stand de Carros (12k€)</button>
-            <button class="btn-game" style="background:#0071e3;" onclick="fundarEmpresa('Barbearia', 2000, 180)">Fundar Barbearia (2k€)</button>
+            <button class="btn-game" onclick="fundarEmpresa('Stand', 12000, 1000)">Criar Stand de Automóveis (12k€)</button>
+            <button class="btn-game" style="background:#0071e3;" onclick="fundarEmpresa('Barbearia', 2000, 180)">Criar Barbearia (2k€)</button>
             <div id="lista-empresas" style="margin:10px 0;"></div>
-            <h3>🛒 Comprar Carros/Casas</h3>
+            <h3>🛒 Comprar Imóveis/Carros</h3>
             <div class="card-item"><div>Vivenda T3<br><small>Preço: 35,000€</small></div><button class="btn-game" onclick="comprarBem('casa','Vivenda T3', 35000, 150)">Comprar</button></div>
             <div class="card-item"><div>Carro Desportivo<br><small>Preço: 9,000€</small></div><button class="btn-game" onclick="comprarBem('carro','Desportivo', 9000, 60)">Comprar</button></div>
             <div id="lista-bens"></div>
         </div>
 
-        <!-- ABA 5: ATIVIDADES (CRIME, CASINO, INVESTIMENTOS, SAÚDE) -->
+        <!-- ABA 5: ATIVIDADES MÚLTIPLAS -->
         <div id="aba-atividades" class="aba-conteudo">
-            <h2>⚡ Atividades e Estilo de Vida</h2>
-            <div class="card-item"><div>🩺 Ir ao Médico (Limpar Doenças)</div><button class="btn-game" onclick="irAoMedico()">Consultar (50€)</button></div>
-            <div class="card-item"><div>🏋️ Ir ao Ginásio (Sobe Saúde/Aparência)</div><button class="btn-game" onclick="irAoGinasio()">Treinar (15€)</button></div>
+            <h2>⚡ Atividades</h2>
+            <div class="card-item"><div>🩺 Ir ao Médico (Cura Doenças)</div><button class="btn-game" onclick="irAoMedico()">Consultar (50€)</button></div>
+            <div class="card-item"><div>🏋️ Ir ao Ginásio (+Saúde/Aparência)</div><button class="btn-game" onclick="irAoGinasio()">Treinar (15€)</button></div>
             <div class="card-item"><div>🎰 Casino Estoril (Apostar Blackjack)</div><button class="btn-game" style="background:#ff9500;" onclick="abrirCasino()">Jogar (500€)</button></div>
             <div class="card-item"><div>🥷 Vida de Crime (Assaltar Stands)</div><button class="btn-game btn-danger" onclick="cometerCrime()">Assaltar</button></div>
             <h3>📈 Investimentos & Cripto</h3>
-            <div class="card-item"><div>Bitcoin (Preço atual: <span id="crypt-price">1000</span>€)</div>
+            <div class="card-item"><div>Bitcoin (Preço: <span id="crypt-price">1200</span>€)</div>
                 <div><button class="btn-game" onclick="comprarAtivo('btc', 1)">Comprar 1</button>
-                     <button class="btn-game btn-danger" onclick="venderAtivo('btc')">Vender</button></div></div>
+                     <button class="btn-game btn-danger" onclick="venderAtivo('btc')">Vender Tudo</button></div></div>
             <p><small>Possuis: <span id="my-btc">0</span> BTC</small></p>
         </div>
     </main>
@@ -176,7 +176,7 @@
         const apelidosPT = ["Santos", "Martins", "Costa", "Pereira", "Almeida", "Ribeiro"];
         const feed = document.getElementById("feed-vida");
 
-        // Sistema de Abas
+        // Troca de Abas
         document.querySelectorAll(".nav-btn").forEach(btn => {
             btn.addEventListener("click", () => {
                 document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
@@ -186,7 +186,7 @@
             });
         });
 
-        // Setup Personagem Inicial
+        // Nascimento do Personagem
         document.getElementById("btn-comecar-vida").addEventListener("click", () => {
             p.nome = document.getElementById("setup-nome").value;
             p.apelido = document.getElementById("setup-apelido").value;
@@ -207,7 +207,7 @@
             feed.insertBefore(item, feed.firstChild);
         }
 
-        // Motor Semestral (+6 Meses)
+        // Sistema de 6 em 6 Meses
         document.getElementById("btn-envelhecer").addEventListener("click", () => {
             p.idadeMeses += 6;
             if (p.idadeMeses >= 12) { p.idadeMeses = 0; p.idadeAnos += 1; }
@@ -221,7 +221,6 @@
                 atualizarEcra(); return;
             }
 
-            // Finanças Semestrais
             let receita = 0;
             if (p.emprego) receita += (p.emprego.salario / 2);
             p.empresas.forEach(e => receita += e.ganho);
@@ -236,14 +235,13 @@
             if (receita > (p.emprego ? p.emprego.salario/2 : 0)) log += ` | Lucro de Negócios!`;
             adicionarFeed(log);
 
-            // Flutuação Cripto
             mercado.btcPreco = Math.max(100, Math.floor(mercado.btcPreco * (0.5 + Math.random())));
 
             if (Math.random() > 0.6) dispararEventosAleatorios();
             atualizarEcra();
         });
 
-        // Carreira & Trabalho
+        // Gestão de Empregos
         function renderizarVagas() {
             const div = document.getElementById("lista-vagas");
             if (p.emprego) {
@@ -270,7 +268,7 @@
             atualizarEcra();
         }
         function demitirMe() { p.emprego = null; adicionarFeed("Te despediste do emprego."); atualizarEcra(); }
-        // Relações e Família
+        // Sistema de Relações do BitLife
         function procurarParceira() {
             const n = nomesMulheres[Math.floor(Math.random() * nomesMulheres.length)] + " " + apelidosPT[Math.floor(Math.random() * apelidosPT.length)];
             abrirPopup(`<h3>Cupido BitLife</h3><p>Conheceste a <strong>${n}</strong>. Queres tentar uma relação?</p>
@@ -296,7 +294,7 @@
             atualizarEcra();
         }
 
-        // Gestão de Ativos Reais e Empresas
+        // Customização e Compra de Negócios/Bens
         function fundarEmpresa(tipo, custo, ganho) {
             if(p.saldo < custo) { alert("Saldo insuficiente!"); return; }
             const nome = prompt("Nome da Empresa:"); if(!nome) return;
@@ -326,7 +324,7 @@
             p.bens.forEach(b => { div.innerHTML += `<div class="card-item"><div>📦 ${b.nome} (${b.tipo})</div></div>`; });
         }
 
-        // Cripto Trading
+        // Especulação Financeira (Cripto)
         function comprarAtivo(ativo, qtd) {
             let total = mercado.btcPreco * qtd;
             if(p.saldo < total) { alert("Sem dinheiro!"); return; }
@@ -337,7 +335,7 @@
             p.saldo += mercado.btcPreco * p.btc; p.btc = 0;
             adicionarFeed("📈 Vendeste as tuas criptomoedas."); atualizarEcra();
         }
-        // Atividades do Jogador (Saúde, Ginásio e Crimes)
+        // Atividades de Ginásio, Saúde e Lógica Criminal
         function irAoMedico() {
             if(p.saldo < 50) return; p.saldo -= 50;
             p.saude = Math.min(100, p.saude + 25); p.felicidade = Math.min(100, p.felicidade + 10);
@@ -349,7 +347,7 @@
             adicionarFeed("🏋️ Treinaste no Fitness Hut. Ficas mais em forma!"); atualizarEcra();
         }
 
-        // Mini-jogo Casino (Aposta Blackjack Simplificado)
+        // Casino do Jogo
         function abrirCasino() {
             if(p.saldo < 500) { alert("Não tens 500€ para a aposta mínima!"); return; }
             p.saldo -= 500;
@@ -358,19 +356,18 @@
             atualizarEcra();
         }
 
-        // Vida de Crime & Prisão
+        // Assaltos e Prisão Portuguesa
         function cometerCrime() {
             abrirPopup(`<h3>🥷 Atividade Criminosa</h3><p>Tens a oportunidade de assaltar um stand de carros local à noite. Arriscas?</p>
             <button class="btn-game btn-danger" onclick="executarCrime()">Sim, assaltar!</button><button class="btn-game" style="margin-left:10px;" onclick="fecharPopup()">Recuar</button>`);
         }
-        function executarCrime() {
+        function ejecutarCrime() {
             fecharPopup();
             if(Math.random() > 0.6) {
                 p.saldo += 4500; p.felicidade = Math.min(100, p.felicidade + 20);
                 adicionarFeed("💰 Sucesso! Assaltaste o stand e vendeste as peças por +4,500€.");
             } else {
-                p.naPrisao = true; p.anosPrisao = 3; p.emprego = null;
-                p.felicidade = 10;
+                p.naPrisao = true; p.anosPrisao = 3; p.emprego = null; p.felicidade = 10;
                 adicionarFeed("🚨 ALERTA DA POLÍCIA: Foste apanhado em flagrante! Condenado a 3 anos de Prisão.");
             }
             atualizarEcra();
@@ -397,11 +394,11 @@
                 { t: "Gorjeta Suprema", m: "Um cliente rico adorou a tua postura profissional e deu-te um bónus surpresa.", a1: "Aceitar", a2: "Recusar", r1: () => { p.saldo += 400; adicionarFeed("Recebeste um bónus de +400€."); }, r2: () => {} }
             ];
             const e = evs[Math.floor(Math.random() * evs.length)]; window.currentEvent = e;
-            abrirPopup(`<h3>🔔 ${e.t}</h3><p>${e.m}</p><button class="btn-game" onclick="resolverEvento(1)">${e.a1}</button><button class="btn-game btn-danger" style="margin-left:10px;" onclick="resolverEvento(2)">${e.a2}</button>`);
+            abrirPopup(`<h3>👑 ${e.t}</h3><p>${e.m}</p><button class="btn-game" onclick="resolverEvento(1)">${e.a1}</button><button class="btn-game btn-danger" style="margin-left:10px;" onclick="resolverEvento(2)">${e.a2}</button>`);
         }
         function resolverEvento(o) { if(o===1) window.currentEvent.r1(); else window.currentEvent.r2(); fecharPopup(); atualizarEcra(); }
 
-        // Inicialização
+        // Inicialização Inicial
         atualizarEcra();
         if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js').catch(() => {}); }
     </script>
