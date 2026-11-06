@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>BitLife Portugal — Ultimate Edition</title>
+    <title>BitLife Portugal — God Mode Edition</title>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="manifest" href="manifest.json">
@@ -12,45 +12,46 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             margin: 0; padding: env(safe-area-inset-top) 16px env(safe-area-inset-bottom) 16px;
-            background-color: #000000; color: #ffffff; font-size: 15px; user-select: none;
+            background-color: #000000; color: #ffffff; font-size: 14px; user-select: none;
         }
         main { padding-bottom: 240px; padding-top: 10px; }
         header { text-align: center; padding: 12px 0; border-bottom: 1px solid #222; }
-        .nome-personagem { font-size: 24px; font-weight: 800; margin: 0; color: #ffcc00; }
-        .detalhes-personagem { color: #aaa; font-size: 13px; margin: 4px 0 0 0; }
+        .nome-personagem { font-size: 22px; font-weight: 800; margin: 0; color: #ffcc00; }
+        .detalhes-personagem { color: #aaa; font-size: 12px; margin: 4px 0 0 0; }
         .modal {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.9); display: flex; align-items: center;
+            background: rgba(0,0,0,0.95); display: flex; align-items: center;
             justify-content: center; z-index: 2000; padding: 20px;
         }
         .modal-content {
             background: #1c1c1e; border-radius: 16px; padding: 20px;
-            width: 100%; max-width: 400px; border: 1px solid #2c2c2e;
+            width: 100%; max-width: 400px; border: 1px solid #2c2c2e; max-height: 85vh; overflow-y: auto;
         }
         .modal h2 { margin-top: 0; color: #ffcc00; }
         .input-game {
-            width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #3a3a3c;
-            background: #2c2c2e; color: white; font-size: 16px; margin-bottom: 15px;
+            width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #3a3a3c;
+            background: #2c2c2e; color: white; font-size: 15px; margin-bottom: 12px;
         }
         .aba-conteudo { display: none; margin-top: 15px; }
         .aba-conteudo.ativa { display: block; }
-        .diario-feed { display: flex; flex-direction: column; gap: 10px; }
+        .diario-feed { display: flex; flex-direction: column; gap: 8px; }
         .diario-item {
-            background: #1c1c1e; border-left: 4px solid #0071e3;
-            padding: 12px; border-radius: 0 10px 10px 0; font-size: 14px; line-height: 1.4;
+            background: #1c1c1e; border-left: 4px solid #34c759;
+            padding: 10px; border-radius: 0 10px 10px 0; font-size: 13px; line-height: 1.4;
         }
-        .diario-idade { font-weight: 700; color: #0071e3; }
+        .diario-idade { font-weight: 700; color: #34c759; }
         .card-item {
             background: #1c1c1e; border: 1px solid #2c2c2e;
-            padding: 14px; border-radius: 12px; margin-bottom: 10px;
+            padding: 12px; border-radius: 12px; margin-bottom: 8px;
             display: flex; justify-content: space-between; align-items: center;
         }
         .btn-game {
-            background: #34c759; color: white; border: none; padding: 8px 14px;
-            border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 13px;
+            background: #34c759; color: white; border: none; padding: 8px 12px;
+            border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 12px;
         }
         .btn-game:active { background: #28a745; }
         .btn-danger { background: #ff3b30; }
+        .btn-danger:active { background: #c53026; }
         .status-fixo {
             position: fixed; bottom: 65px; left: 0; right: 0;
             background: #1c1c1e; padding: 10px 16px; border-top: 1px solid #2c2c2e;
@@ -61,103 +62,91 @@
         .nav-tabs {
             position: fixed; bottom: 0; left: 0; right: 0; background: #1c1c1e;
             display: flex; justify-content: space-around; padding: 6px 0 env(safe-area-inset-bottom) 0;
-            border-top: 1px solid #2c2c2e; z-index: 999;
+            border-top: 1px solid #2c2c2e; z-index: 999; overflow-x: auto;
         }
         .nav-btn {
             background: none; border: none; font-size: 10px; color: #888;
-            display: flex; flex-direction: column; align-items: center; min-width: 50px;
+            display: flex; flex-direction: column; align-items: center; min-width: 60px; padding: 4px;
         }
         .nav-btn.active { color: #ffcc00; font-weight: bold; }
-        .nav-icon { font-size: 20px; }
+        .nav-icon { font-size: 18px; margin-bottom: 2px; }
         .btn-envelhecer {
-            position: fixed; bottom: 110px; right: 20px; width: 64px; height: 64px;
+            position: fixed; bottom: 125px; right: 20px; width: 60px; height: 60px;
             background: #ffcc00; color: black; border-radius: 50%; border: none;
-            font-size: 26px; font-weight: bold; display: flex; align-items: center;
+            font-size: 24px; font-weight: bold; display: flex; align-items: center;
             justify-content: center; box-shadow: 0 4px 12px rgba(255,204,0,0.3); z-index: 1000;
         }
     </style>
 </head>
 <body>
-    <!-- POPUP DE CRIAÇÃO DO PERSONAGEM -->
+    <!-- MODAL CRIAÇÃO -->
     <div id="modal-criacao" class="modal">
         <div class="modal-content">
-            <h2>Criar Novo Personagem</h2>
-            <label>Primeiro Nome:</label>
-            <input type="text" id="setup-nome" class="input-game" value="Tiago">
-            <label>Apelido:</label>
-            <input type="text" id="setup-apelido" class="input-game" value="Silva">
-            <label>Onde queres viver?</label>
+            <h2>Criar Personagem</h2>
+            <label>Nome:</label><input type="text" id="setup-nome" class="input-game" value="Tiago">
+            <label>Apelido:</label><input type="text" id="setup-apelido" class="input-game" value="Silva">
+            <label>Distrito de Nascimento:</label>
             <select id="setup-cidade" class="input-game">
-                <option value="Chamusca">Chamusca (Custo Baixo)</option>
-                <option value="Lisboa">Lisboa (Custo Alto)</option>
-                <option value="Porto">Porto (Custo Médio)</option>
+                <option value="Chamusca">Chamusca (Santarém)</option>
+                <option value="Lisboa">Lisboa (Capital)</option>
+                <option value="Porto">Porto</option>
             </select>
-            <button id="btn-comecar-vida" class="btn-game" style="width:100%; padding:14px;">Começar Vida 🇵🇹</button>
+            <button id="btn-comecar-vida" class="btn-game" style="width:100%; padding:12px;">Começar Vida 🇵🇹</button>
         </div>
     </div>
 
-    <!-- POPUP DE DECISÕES DURANTE O JOGO -->
-    <div id="modal-decisao" class="modal" style="display:none;">
-        <div class="modal-content" id="decisao-corpo"></div>
-    </div>
+    <!-- MODAL POPUP -->
+    <div id="modal-decisao" class="modal" style="display:none;"><div class="modal-content" id="decisao-corpo"></div></div>
 
     <main>
         <header>
             <p class="nome-personagem" id="player-nome">Tiago Silva</p>
-            <p class="detalhes-personagem">
-                📍 <span id="player-local">Chamusca</span> · 💶 Banco: <span id="player-saldo">0.00€</span>
-            </p>
+            <p class="detalhes-personagem">📍 <span id="player-local">Chamusca</span> | 💶 Banco: <span id="player-saldo">0€</span> | 💼 Trabalho: <span id="player-emprego">Desempregado</span></p>
         </header>
 
-        <!-- ABA 1: FEED DE HISTÓRIA -->
-        <div id="aba-dia" class="aba-conteudo ativa">
-            <div class="diario-feed" id="feed-vida"></div>
+        <!-- ABA 1: DIÁRIO -->
+        <div id="aba-dia" class="aba-conteudo ativa"><div class="diario-feed" id="feed-vida"></div></div>
+
+        <!-- ABA 2: EMPREGO & CARREIRA -->
+        <div id="aba-trabalho" class="aba-conteudo">
+            <h2>💼 Centro de Emprego</h2>
+            <div id="lista-vagas"></div>
         </div>
 
-        <!-- ABA 2: RELACIONAMENTOS -->
+        <!-- ABA 3: RELACIONAMENTOS -->
         <div id="aba-amor" class="aba-conteudo">
-            <h2>❤️ Relações & Família</h2>
-            <button class="btn-game" style="width:100%; margin-bottom:15px; padding:12px;" onclick="procurarParceira()">Procurar Namorada (Grátis)</button>
+            <h2>❤️ Família & Relações</h2>
+            <button class="btn-game" style="width:100%; margin-bottom:12px;" onclick="procurarParceira()">Procurar Namorada</button>
             <div id="lista-relacoes"></div>
         </div>
 
-        <!-- ABA 3: NEGÓCIOS CUSTOMIZÁVEIS -->
-        <div id="aba-negocio" class="aba-conteudo">
-            <h2>🏪 Gestão de Empresas</h2>
-            <div class="card-item">
-                <div><strong>💈 Abrir Barbearia</strong><br><small>Custo: 2,500€ · Lucro: +200€ / 6 meses</small></div>
-                <button class="btn-game" onclick="fundarEmpresa('Barbearia', 2500, 200)">Fundar</button>
-            </div>
-            <div class="card-item">
-                <div><strong>🚗 Abrir Stand de Automóveis</strong><br><small>Custo: 15,000€ · Lucro: +1,200€ / 6 meses</small></div>
-                <button class="btn-game" onclick="fundarEmpresa('Stand', 15000, 1200)">Fundar</button>
-            </div>
-            <div id="lista-empresas" style="margin-top:15px;"></div>
+        <!-- ABA 4: BENS & NEGÓCIOS -->
+        <div id="aba-bens" class="aba-conteudo">
+            <h2>🏪 Negócios e Propriedades</h2>
+            <button class="btn-game" onclick="fundarEmpresa('Stand', 12000, 1000)">Fundar Stand de Carros (12k€)</button>
+            <button class="btn-game" style="background:#0071e3;" onclick="fundarEmpresa('Barbearia', 2000, 180)">Fundar Barbearia (2k€)</button>
+            <div id="lista-empresas" style="margin:10px 0;"></div>
+            <h3>🛒 Comprar Carros/Casas</h3>
+            <div class="card-item"><div>Vivenda T3<br><small>Preço: 35,000€</small></div><button class="btn-game" onclick="comprarBem('casa','Vivenda T3', 35000, 150)">Comprar</button></div>
+            <div class="card-item"><div>Carro Desportivo<br><small>Preço: 9,000€</small></div><button class="btn-game" onclick="comprarBem('carro','Desportivo', 9000, 60)">Comprar</button></div>
+            <div id="lista-bens"></div>
         </div>
 
-        <!-- ABA 4: BENS (CASAS/CARROS) -->
-        <div id="aba-bens" class="aba-conteudo">
-            <h2>🛒 Mercado de Bens</h2>
-            <h3>🏠 Imóveis Disponíveis</h3>
-            <div class="card-item">
-                <div><strong>Apartamento T1</strong><br><small>Preço: 8,000€ · Custo: -50€ / 6m</small></div>
-                <button class="btn-game" onclick="comprarBem('casa', 'Apartamento T1', 8000, 50)">Comprar</button>
-            </div>
-            <div class="card-item">
-                <div><strong>Vivenda Familiar</strong><br><small>Preço: 45,000€ · Custo: -180€ / 6m</small></div>
-                <button class="btn-game" onclick="comprarBem('casa', 'Vivenda Familiar', 45000, 180)">Comprar</button>
-            </div>
-            <h3>🚘 Veículos</h3>
-            <div class="card-item">
-                <div><strong>Carro Citadino Usado</strong><br><small>Preço: 1,200€ · Custo: -30€ / 6m</small></div>
-                <button class="btn-game" onclick="comprarBem('carro', 'Citadino Usado', 1200, 30)">Comprar</button>
-            </div>
-            <h3>Os teus Bens Comprados</h3>
-            <div id="lista-bens"></div>
+        <!-- ABA 5: ATIVIDADES (CRIME, CASINO, INVESTIMENTOS, SAÚDE) -->
+        <div id="aba-atividades" class="aba-conteudo">
+            <h2>⚡ Atividades e Estilo de Vida</h2>
+            <div class="card-item"><div>🩺 Ir ao Médico (Limpar Doenças)</div><button class="btn-game" onclick="irAoMedico()">Consultar (50€)</button></div>
+            <div class="card-item"><div>🏋️ Ir ao Ginásio (Sobe Saúde/Aparência)</div><button class="btn-game" onclick="irAoGinasio()">Treinar (15€)</button></div>
+            <div class="card-item"><div>🎰 Casino Estoril (Apostar Blackjack)</div><button class="btn-game" style="background:#ff9500;" onclick="abrirCasino()">Jogar (500€)</button></div>
+            <div class="card-item"><div>🥷 Vida de Crime (Assaltar Stands)</div><button class="btn-game btn-danger" onclick="cometerCrime()">Assaltar</button></div>
+            <h3>📈 Investimentos & Cripto</h3>
+            <div class="card-item"><div>Bitcoin (Preço atual: <span id="crypt-price">1000</span>€)</div>
+                <div><button class="btn-game" onclick="comprarAtivo('btc', 1)">Comprar 1</button>
+                     <button class="btn-game btn-danger" onclick="venderAtivo('btc')">Vender</button></div></div>
+            <p><small>Possuis: <span id="my-btc">0</span> BTC</small></p>
         </div>
     </main>
 
-    <!-- Atributos do Fundo -->
     <div class="status-fixo">
         <div>😊 Felicidade <div class="barra-progresso"><div class="barra-preenchimento" id="bar-felicidade"></div></div></div>
         <div>💪 Saúde <div class="barra-progresso"><div class="barra-preenchimento" id="bar-saude"></div></div></div>
@@ -165,30 +154,29 @@
         <div>✨ Aparência <div class="barra-progresso"><div class="barra-preenchimento" id="bar-aparencia"></div></div></div>
     </div>
 
-    <!-- Botão Envelhecer de 6 em 6 Meses -->
     <button id="btn-envelhecer" class="btn-envelhecer">⏳</button>
-    <div style="position:fixed; bottom:95px; right:32px; font-size:9px; color:#ffcc00; font-weight:bold; z-index:1000;">+6 MESES</div>
+    <div style="position:fixed; bottom:110px; right:30px; font-size:8px; color:#ffcc00; font-weight:bold; z-index:1000;">+6 MESES</div>
 
-    <!-- Menu Inferior -->
     <nav class="nav-tabs">
         <button class="nav-btn active" data-aba="aba-dia"><span class="nav-icon">📅</span>História</button>
-        <button class="nav-btn" data-aba="aba-amor"><span class="nav-icon">❤️</span>Relações</button>
-        <button class="nav-btn" data-aba="aba-negocio"><span class="nav-icon">🏪</span>Negócios</button>
-        <button class="nav-btn" data-aba="aba-bens"><span class="nav-icon">💎</span>Bens</button>
+        <button class="nav-btn" data-aba="aba-trabalho"><span class="nav-icon">💼</span>Trabalho</button>
+        <button class="nav-btn" data-aba="aba-amor"><span class="nav-icon">❤️</span>Família</button>
+        <button class="nav-btn" data-aba="aba-bens"><span class="nav-icon">💎</span>Ativos</button>
+        <button class="nav-btn" data-aba="aba-atividades"><span class="nav-icon">⚡</span>Atividades</button>
     </nav>
     <script>
-        // Sistema de Dados Base do Jogador
         let p = {
-            nome: "", apelido: "", idadeAnos: 18, idadeMeses: 0, cidade: "", saldo: 300,
-            felicidade: 80, saude: 90, inteligencia: 70, aparencia: 60,
-            relacoes: [], empresas: [], bens: [], custoVida: 80
+            nome: "", apelido: "", idadeAnos: 18, idadeMeses: 0, cidade: "", saldo: 500,
+            felicidade: 80, saude: 90, inteligencia: 75, aparencia: 65,
+            relacoes: [], empresas: [], bens: [], emprego: null, btc: 0, naPrisao: false, anosPrisao: 0
         };
 
+        let mercado = { btcPreco: 1200 };
         const nomesMulheres = ["Ana", "Sofia", "Mariana", "Catarina", "Beatriz", "Rita", "Inês", "Joana"];
-        const apelidosPT = ["Santos", "Martins", "Costa", "Pereira", "Almeida", "Ribeiro", "Fernandes"];
+        const apelidosPT = ["Santos", "Martins", "Costa", "Pereira", "Almeida", "Ribeiro"];
         const feed = document.getElementById("feed-vida");
 
-        // Troca de Ecrãs (Abas)
+        // Sistema de Abas
         document.querySelectorAll(".nav-btn").forEach(btn => {
             btn.addEventListener("click", () => {
                 document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
@@ -198,28 +186,198 @@
             });
         });
 
-        // Configuração Inicial de Nome e Localização
+        // Setup Personagem Inicial
         document.getElementById("btn-comecar-vida").addEventListener("click", () => {
             p.nome = document.getElementById("setup-nome").value;
             p.apelido = document.getElementById("setup-apelido").value;
             p.cidade = document.getElementById("setup-cidade").value;
-            p.custoVida = p.cidade === "Lisboa" ? 250 : (p.cidade === "Porto" ? 180 : 70);
-            
             document.getElementById("modal-criacao").style.display = "none";
             document.getElementById("player-nome").innerText = `${p.nome} ${p.apelido}`;
             document.getElementById("player-local").innerText = p.cidade;
-            
-            adicionarFeed(`Começaste a tua vida independente em ${p.cidade} com 18 anos!`);
+            adicionarFeed(`Nasceste em Portugal. Decidiste começar o teu percurso na região de ${p.cidade}.`);
             atualizarEcra();
         });
 
         function adicionarFeed(texto) {
-            const auxMeses = p.idadeMeses === 0 ? "0 meses" : "6 meses";
+            const mStr = p.idadeMeses === 0 ? "0m" : "6m";
             const item = document.createElement("div");
             item.className = "diario-item";
-            item.innerHTML = `<span class="diario-idade">[${p.idadeAnos}a e ${auxMeses}]:</span> ${texto}`;
+            if(p.naPrisao) item.style.borderLeftColor = "#ff3b30";
+            item.innerHTML = `<span class="diario-idade">[${p.idadeAnos}a, ${mStr}]:</span> ${texto}`;
             feed.insertBefore(item, feed.firstChild);
         }
+
+        // Motor Semestral (+6 Meses)
+        document.getElementById("btn-envelhecer").addEventListener("click", () => {
+            p.idadeMeses += 6;
+            if (p.idadeMeses >= 12) { p.idadeMeses = 0; p.idadeAnos += 1; }
+
+            if(p.naPrisao) {
+                p.anosPrisao--;
+                p.felicidade = Math.max(0, p.felicidade - 10);
+                p.saude = Math.max(0, p.saude - 5);
+                adicionarFeed(`Cumpris mais 6 meses na prisão. Restam: ${p.anosPrisao} anos.`);
+                if(p.anosPrisao <= 0) { p.naPrisao = false; adicionarFeed("🔓 Foste libertado da prisão!"); }
+                atualizarEcra(); return;
+            }
+
+            // Finanças Semestrais
+            let receita = 0;
+            if (p.emprego) receita += (p.emprego.salario / 2);
+            p.empresas.forEach(e => receita += e.ganho);
+
+            let despesa = p.cidade === "Lisboa" ? 180 : 90;
+            p.bens.forEach(b => despesa += b.manutencao);
+
+            p.saldo += receita; p.saldo -= despesa;
+
+            let log = `Passou um semestre. Despesas: -${despesa}€`;
+            if (p.emprego) log += ` | Salário recebido: +${(p.emprego.salario/2)}€`;
+            if (receita > (p.emprego ? p.emprego.salario/2 : 0)) log += ` | Lucro de Negócios!`;
+            adicionarFeed(log);
+
+            // Flutuação Cripto
+            mercado.btcPreco = Math.max(100, Math.floor(mercado.btcPreco * (0.5 + Math.random())));
+
+            if (Math.random() > 0.6) dispararEventosAleatorios();
+            atualizarEcra();
+        });
+
+        // Carreira & Trabalho
+        function renderizarVagas() {
+            const div = document.getElementById("lista-vagas");
+            if (p.emprego) {
+                div.innerHTML = `<div class="card-item"><div>Trabalhas como: <strong>${p.emprego.cargo}</strong><br><small>Salário Anual: ${p.emprego.salario}€</small></div>
+                <button class="btn-game btn-danger" onclick="demitirMe()">Demitir-me</button></div>`;
+                return;
+            }
+            const vagas = [
+                { cargo: "Barbeiro Júnior", salario: 9500, reqIntel: 40 },
+                { cargo: "Gestor de Stands", salario: 18000, reqIntel: 65 },
+                { cargo: "Diretor Financeiro", salario: 42000, reqIntel: 85 }
+            ];
+            div.innerHTML = "<h3>Vagas Disponíveis:</h3>";
+            vagas.forEach(v => {
+                div.innerHTML += `<div class="card-item"><div><strong>${v.cargo}</strong><br><small>Salário: ${v.salario}€/ano</small></div>
+                <button class="btn-game" onclick="candidatarEmprego('${v.cargo}', ${v.salario}, ${v.reqIntel})">Candidatar</button></div>`;
+            });
+        }
+        function candidatarEmprego(cargo, salario, req) {
+            if (p.inteligencia >= req) {
+                p.emprego = { cargo: cargo, salario: salario };
+                adicionarFeed(`💼 Aceite! Começaste a trabalhar como ${cargo}.`);
+            } else { alert("Foste rejeitado na entrevista devido à tua Inteligência!"); }
+            atualizarEcra();
+        }
+        function demitirMe() { p.emprego = null; adicionarFeed("Te despediste do emprego."); atualizarEcra(); }
+        // Relações e Família
+        function procurarParceira() {
+            const n = nomesMulheres[Math.floor(Math.random() * nomesMulheres.length)] + " " + apelidosPT[Math.floor(Math.random() * apelidosPT.length)];
+            abrirPopup(`<h3>Cupido BitLife</h3><p>Conheceste a <strong>${n}</strong>. Queres tentar uma relação?</p>
+            <button class="btn-game" onclick="aceitarParceira('${n}')">Pedir em Namoro</button><button class="btn-game btn-danger" style="margin-left:10px;" onclick="fecharPopup()">Ignorar</button>`);
+        }
+        function aceitarParceira(nome) { p.relacoes.push({ nome: nome, tipo: "Namorada", amor: 70 }); fecharPopup(); adicionarFeed(`Namoras com ${nome}.`); atualizarEcra(); }
+        
+        function renderizarRelacoes() {
+            const div = document.getElementById("lista-relacoes"); div.innerHTML = "";
+            p.relacoes.forEach((r, idx) => {
+                div.innerHTML += `<div class="card-item"><div><strong>${r.nome} (${r.tipo})</strong><br><small>Afeto: ${r.amor}%</small></div>
+                <div><button class="btn-game" onclick="mimarParceira(${idx})">Mimar</button>
+                <button class="btn-game" style="background:#ff9500;" onclick="tentarFilho(${idx})">Ter Filho</button></div></div>`;
+            });
+        }
+        function mimarParceira(idx) { p.relacoes[idx].amor = Math.min(100, p.relacoes[idx].amor + 15); adicionarFeed(`Fizeste um mimo a ${p.relacoes[idx].nome}.`); atualizarEcra(); }
+        function tentarFilho(idx) {
+            if (Math.random() > 0.4) {
+                const nFilho = Math.random() > 0.5 ? "Diogo" : "Beatriz";
+                p.relacoes.push({ nome: `${nFilho} ${p.apelido}`, tipo: "Filho(a)", amor: 100 });
+                adicionarFeed(`👶 Nasceu o teu filho(a) ${nFilho}!`);
+            } else alert("Tentaram mas não engravidaram.");
+            atualizarEcra();
+        }
+
+        // Gestão de Ativos Reais e Empresas
+        function fundarEmpresa(tipo, custo, ganho) {
+            if(p.saldo < custo) { alert("Saldo insuficiente!"); return; }
+            const nome = prompt("Nome da Empresa:"); if(!nome) return;
+            p.saldo -= custo; p.empresas.push({ nome: nome, tipo: tipo, ganho: ganho });
+            adicionarFeed(`🏪 Fundaste a empresa "${nome}".`); atualizarEcra();
+        }
+        function renderizarEmpresas() {
+            const div = document.getElementById("lista-empresas");
+            div.innerHTML = p.empresas.length === 0 ? "" : "<h3>Empresas Operacionais:</h3>";
+            p.empresas.forEach(e => {
+                div.innerHTML += `<div class="card-item"><div><strong>${e.nome}</strong> (${e.tipo})<br><small>Rendimento: +${e.ganho}€</small></div>
+                <button class="btn-game" style="background:#ff9500;" onclick="renomearEmpresa('${e.nome}')">Renomear</button></div>`;
+            });
+        }
+        function renomearEmpresa(antigo) {
+            const n = prompt("Novo nome:"); if(!n) return;
+            let emp = p.empresas.find(e => e.nome === antigo); if(emp) emp.nome = n;
+            atualizarEcra();
+        }
+        function comprarBem(tipo, nome, preco, m) {
+            if(p.saldo < preco) { alert("Sem fundos!"); return; }
+            p.saldo -= preco; p.bens.push({ tipo: tipo, nome: nome, manutencao: m });
+            adicionarFeed(`💎 Compraste: ${nome}.`); atualizarEcra();
+        }
+        function renderizarBens() {
+            const div = document.getElementById("lista-bens"); div.innerHTML = "";
+            p.bens.forEach(b => { div.innerHTML += `<div class="card-item"><div>📦 ${b.nome} (${b.tipo})</div></div>`; });
+        }
+
+        // Cripto Trading
+        function comprarAtivo(ativo, qtd) {
+            let total = mercado.btcPreco * qtd;
+            if(p.saldo < total) { alert("Sem dinheiro!"); return; }
+            p.saldo -= total; p.btc += qtd; atualizarEcra();
+        }
+        function venderAtivo(ativo) {
+            if(p.btc <= 0) return;
+            p.saldo += mercado.btcPreco * p.btc; p.btc = 0;
+            adicionarFeed("📈 Vendeste as tuas criptomoedas."); atualizarEcra();
+        }
+        // Atividades do Jogador (Saúde, Ginásio e Crimes)
+        function irAoMedico() {
+            if(p.saldo < 50) return; p.saldo -= 50;
+            p.saude = Math.min(100, p.saude + 25); p.felicidade = Math.min(100, p.felicidade + 10);
+            adicionarFeed("🩺 Foste ao hospital público, a tua saúde estabilizou!"); atualizarEcra();
+        }
+        function irAoGinasio() {
+            if(p.saldo < 15) return; p.saldo -= 15;
+            p.saude = Math.min(100, p.saude + 10); p.aparencia = Math.min(100, p.aparencia + 12);
+            adicionarFeed("🏋️ Treinaste no Fitness Hut. Ficas mais em forma!"); atualizarEcra();
+        }
+
+        // Mini-jogo Casino (Aposta Blackjack Simplificado)
+        function abrirCasino() {
+            if(p.saldo < 500) { alert("Não tens 500€ para a aposta mínima!"); return; }
+            p.saldo -= 500;
+            if(Math.random() > 0.48) { p.saldo += 1000; alert("🃏 Ganhaste a mão no Blackjack! +500€"); adicionarFeed("🎰 Ganhaste 500€ no Casino Estoril."); }
+            else { alert("Perdeu para a banca."); adicionarFeed("🎰 Perdeste 500€ no Casino Estoril."); }
+            atualizarEcra();
+        }
+
+        // Vida de Crime & Prisão
+        function cometerCrime() {
+            abrirPopup(`<h3>🥷 Atividade Criminosa</h3><p>Tens a oportunidade de assaltar um stand de carros local à noite. Arriscas?</p>
+            <button class="btn-game btn-danger" onclick="executarCrime()">Sim, assaltar!</button><button class="btn-game" style="margin-left:10px;" onclick="fecharPopup()">Recuar</button>`);
+        }
+        function executarCrime() {
+            fecharPopup();
+            if(Math.random() > 0.6) {
+                p.saldo += 4500; p.felicidade = Math.min(100, p.felicidade + 20);
+                adicionarFeed("💰 Sucesso! Assaltaste o stand e vendeste as peças por +4,500€.");
+            } else {
+                p.naPrisao = true; p.anosPrisao = 3; p.emprego = null;
+                p.felicidade = 10;
+                adicionarFeed("🚨 ALERTA DA POLÍCIA: Foste apanhado em flagrante! Condenado a 3 anos de Prisão.");
+            }
+            atualizarEcra();
+        }
+
+        function abrirPopup(html) { document.getElementById("decisao-corpo").innerHTML = html; document.getElementById("modal-decisao").style.display = "flex"; }
+        function fecharPopup() { document.getElementById("modal-decisao").style.display = "none"; }
 
         function atualizarEcra() {
             document.getElementById("player-saldo").innerText = p.saldo.toFixed(2) + "€";
@@ -227,180 +385,25 @@
             document.getElementById("bar-saude").style.width = p.saude + "%";
             document.getElementById("bar-inteligencia").style.width = p.inteligencia + "%";
             document.getElementById("bar-aparencia").style.width = p.aparencia + "%";
-            renderizarRelacoes();
-            renderizarEmpresas();
-            renderizarBens();
+            document.getElementById("crypt-price").innerText = mercado.btcPreco;
+            document.getElementById("my-btc").innerText = p.btc;
+            document.getElementById("player-emprego").innerText = p.emprego ? p.emprego.cargo : (p.naPrisao ? "Preso 🔒" : "Desempregado");
+            renderizarRelacoes(); renderizarEmpresas(); renderizarBens(); renderizarVagas();
         }
 
-        // Passagem de Tempo (+6 Meses)
-        document.getElementById("btn-envelhecer").addEventListener("click", () => {
-            p.idadeMeses += 6;
-            if (p.idadeMeses >= 12) { p.idadeMeses = 0; p.idadeAnos += 1; }
-
-            let lucroEmpresas = 0;
-            p.empresas.forEach(emp => lucroEmpresas += emp.ganho);
-            let despesaBens = 0;
-            p.bens.forEach(b => despesaBens += b.manutencao);
-
-            p.saldo += lucroEmpresas;
-            p.saldo -= (p.custoVida + despesaBens);
-
-            let logRodada = `Passaram 6 meses. Custos de vida: -${p.custoVida}€`;
-            if (lucroEmpresas > 0) logRodada += ` | Negócios: +${lucroEmpresas}€`;
-            if (despesaBens > 0) logRodada += ` | Manutenção de bens: -${despesaBens}€`;
-            adicionarFeed(logRodada);
-            
-            if (Math.random() > 0.65) dispararEventosAleatorios();
-            atualizarEcra();
-            if (navigator.vibrate) navigator.vibrate(12);
-        });
-
-        // Mecânicas Amorosas e Familiares
-        function procurarParceira() {
-            const nome = nomesMulheres[Math.floor(Math.random() * nomesMulheres.length)];
-            const apelido = apelidosPT[Math.floor(Math.random() * apelidosPT.length)];
-            const completo = `${nome} ${apelido}`;
-            abrirPopup(`
-                <h3>Encontraste alguém!</h3>
-                <p>Conheceste a <strong>${completo}</strong> num café local. Queres pedir em namoro?</p>
-                <button class="btn-game" onclick="aceitarParceira('${completo}', 'Namorada')">Sim, namorar</button>
-                <button class="btn-game btn-danger" style="margin-left:10px;" onclick="fecharPopup()">Ignorar</button>
-            `);
-        }
-
-        function aceitarParceira(nome, tipo) {
-            p.relacoes.push({ nome: nome, tipo: tipo, amor: 70 });
-            adicionarFeed(`Começaste a namorar com ${nome}.`);
-            fecharPopup(); atualizarEcra();
-        }
-
-        function renderizarRelacoes() {
-            const div = document.getElementById("lista-relacoes"); div.innerHTML = "";
-            p.relacoes.forEach((rel, index) => {
-                div.innerHTML += `
-                    <div class="card-item">
-                        <div><strong>${rel.nome} (${rel.tipo})</strong><br><small>❤️ Afeto: ${rel.amor}%</small></div>
-                        <div>
-                            <button class="btn-game" onclick="interagirRelacao(${index}, 'amor')">Carinho</button>
-                            <button class="btn-game" style="background:#ff9500;" onclick="interagirRelacao(${index}, 'filho')">Ter Filho</button>
-                        </div>
-                    </div>
-                `;
-            });
-        }
-
-        function interagirRelacao(index, acao) {
-            let rel = p.relacoes[index];
-            if (acao === 'amor') {
-                rel.amor = Math.min(100, rel.amor + 15);
-                adicionarFeed(`Passaste tempo de qualidade com ${rel.nome}.`);
-            } else if (acao === 'filho') {
-                if (Math.random() > 0.4) {
-                    const nomeFilho = Math.random() > 0.5 ? "Pedro" : "Maria";
-                    p.relacoes.push({ nome: `${nomeFilho} ${p.apelido}`, tipo: "Filho(a)", amor: 100 });
-                    p.felicidade = Math.min(100, p.felicidade + 20);
-                    adicionarFeed(`👶 Foste pai! Nasceu o teu filho(a) ${nomeFilho} ${p.apelido}!`);
-                } else {
-                    adicionarFeed(`Tentaste ter um info com ${rel.nome}, mas sem sucesso.`);
-                }
-            }
-            atualizarEcra();
-        }
-        // Sistema de Negócios e Renomeação Comercial
-        function fundarEmpresa(tipoPadrao, custo, ganho) {
-            if (p.saldo < custo) { alert("Dinheiro insuficiente!"); return; }
-            const nomeCustom = prompt("Que nome queres dar ao teu negócio?", `Meu Negócio`);
-            if (!nomeCustom) return;
-
-            p.saldo -= custo;
-            p.empresas.push({ nome: nomeCustom, tipo: tipoPadrao, ganho: ganho });
-            adicionarFeed(`Investiste ${custo}€ e abriste o negócio "${nomeCustom}".`);
-            atualizarEcra();
-        }
-
-        function renderizarEmpresas() {
-            const div = document.getElementById("lista-empresas");
-            div.innerHTML = p.empresas.length === 0 ? "<p style='color:#666;'>Não possuis empresas.</p>" : "<h3>As tuas empresas:</h3>";
-            p.empresas.forEach(emp => {
-                div.innerHTML += `
-                    <div class="card-item">
-                        <div><strong>${emp.nome}</strong> (${emp.tipo})<br><small>Lucro: +${emp.ganho}€</small></div>
-                        <button class="btn-game" style="background:#ff9500;" onclick="alterarNomeNegocio('${emp.nome}')">Renomear</button>
-                    </div>
-                `;
-            });
-        }
-
-        function alterarNomeNegocio(nomeAntigo) {
-            const novoNome = prompt("Insere o novo nome comercial:");
-            if (!novoNome) return;
-            let emp = p.empresas.find(e => e.nome === nomeAntigo);
-            if (emp) {
-                emp.nome = novoNome;
-                adicionarFeed(`Mudaste o nome da empresa para "${novoNome}".`);
-                atualizarEcra();
-            }
-        }
-
-        // Compra de Carros e Casas
-        function comprarBem(tipo, nome, preco, manutencao) {
-            if (p.saldo < preco) { alert("Dinheiro insuficiente!"); return; }
-            p.saldo -= preco;
-            p.bens.push({ tipo: tipo, nome: nome, manutencao: manutencao });
-            adicionarFeed(`Compraste ${nome} por ${preco}€.`);
-            atualizarEcra();
-        }
-
-        function renderizarBens() {
-            const div = document.getElementById("lista-bens");
-            div.innerHTML = p.bens.length === 0 ? "<p style='color:#666;'>Sem propriedades físicas.</p>" : "";
-            p.bens.forEach(b => {
-                div.innerHTML += `<div class="card-item"><div>📦 <strong>${b.nome}</strong><br><small>Manutenção: -${b.manutencao}€</small></div></div>`;
-            });
-        }
-
-        // Controlo dos Popups Visuais
-        function abrirPopup(html) {
-            document.getElementById("decisao-corpo").innerHTML = html;
-            document.getElementById("modal-decisao").style.display = "flex";
-        }
-        function fecharPopup() {
-            document.getElementById("modal-decisao").style.display = "none";
-        }
-
-        // Banco de Eventos Aleatórios (Amantes e Decisões Críticas)
         function dispararEventosAleatorios() {
-            const dadosEv = [
-                {
-                    t: "Tentação Oculta",
-                    m: "Conheceste uma pessoa atraente numa festa. Ela propôs ser tua amante secreta.",
-                    a1: "Aceitar Amante", a2: "Recusar",
-                    r1: () => { p.felicidade = Math.min(100, p.felicidade+15); p.relacoes.push({nome:"Amante Oculta", tipo:"Amante", amor:50}); adicionarFeed("Decidiste ter uma amante às escondidas."); },
-                    r2: () => { adicionarFeed("Mantiveste-te fiel à tua postura."); }
-                },
-                {
-                    t: "Avaria no Carro",
-                    m: "O teu veículo avariou a caminho de Santarém. O arranjo na oficina custa 200€.",
-                    a1: "Pagar Arranjo (-200€)", a2: "Ignorar (Perdes Saúde)",
-                    r1: () => { p.saldo -= 200; adicionarFeed("Pagaste a reparação do veículo."); },
-                    r2: () => { p.saude = Math.max(0, p.saude - 20); adicionarFeed("Ignoraste o problema e o stress afetou a tua saúde."); }
-                }
+            const evs = [
+                { t: "Crise de Apendicite", m: "Sentiste uma dor horrível na barriga! Precisas de ir ao médico urgente.", a1: "Ir ao Hospital", a2: "Ignorar", r1: () => { p.saldo -= 50; adicionarFeed("Trataste a apendicite."); }, r2: () => { p.saude = Math.max(0, p.saude - 40); adicionarFeed("Quase morreste de infeção."); } },
+                { t: "Gorjeta Suprema", m: "Um cliente rico adorou a tua postura profissional e deu-te um bónus surpresa.", a1: "Aceitar", a2: "Recusar", r1: () => { p.saldo += 400; adicionarFeed("Recebeste um bónus de +400€."); }, r2: () => {} }
             ];
-            const ev = dadosEv[Math.floor(Math.random() * dadosEv.length)];
-            window.currentEvent = ev; 
-            abrirPopup(`
-                <h3>🔔 ${ev.t}</h3>
-                <p>${ev.m}</p>
-                <button class="btn-game" onclick="resolverEvento(1)">${ev.a1}</button>
-                <button class="btn-game btn-danger" style="margin-left:10px;" onclick="resolverEvento(2)">${ev.a2}</button>
-            `);
+            const e = evs[Math.floor(Math.random() * evs.length)]; window.currentEvent = e;
+            abrirPopup(`<h3>🔔 ${e.t}</h3><p>${e.m}</p><button class="btn-game" onclick="resolverEvento(1)">${e.a1}</button><button class="btn-game btn-danger" style="margin-left:10px;" onclick="resolverEvento(2)">${e.a2}</button>`);
         }
+        function resolverEvento(o) { if(o===1) window.currentEvent.r1(); else window.currentEvent.r2(); fecharPopup(); atualizarEcra(); }
 
-        function resolverEvento(opcao) {
-            if(opcao === 1) window.currentEvent.r1();
-            else window.currentEvent.r2();
-            fecharPopup(); atualizarEcra();
-        }
+        // Inicialização
+        atualizarEcra();
+        if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js').catch(() => {}); }
     </script>
 </body>
 </html>
